@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
+import { ChakraProvider } from '@chakra-ui/react';
 import { AppProps } from 'next/app';
 import dynamic from 'next/dynamic';
 import { RecoilRoot } from 'recoil';
+
 import 'styles/global.scss';
 
 function App({ Component, pageProps }: AppProps) {
@@ -21,8 +23,10 @@ function App({ Component, pageProps }: AppProps) {
   }, [root]);
   return (
     <RecoilRoot>
-      <RecoilizeDebugger root={root} />
-      <Component {...pageProps} />
+      <ChakraProvider>
+        <RecoilizeDebugger root={root} />
+        <Component {...pageProps} />
+      </ChakraProvider>
     </RecoilRoot>
   );
 }
